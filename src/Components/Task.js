@@ -1,12 +1,12 @@
 import { FaTrashAlt } from "react-icons/fa";
 
-const Task = ({ task }) => {
+const Task = ({ task, onDelete }) => {
   return (
     <div className="task">
       <h4>
-        {task.text} <FaTrashAlt className="trashIcon" />
+        {task.text}{" "}
+        <FaTrashAlt className="trashIcon" onClick={() => onDelete(task.id)} />
       </h4>
-      <p>{task.day}</p>
     </div>
   );
 };

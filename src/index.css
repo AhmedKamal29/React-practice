@@ -36,14 +36,14 @@ body {
   background: rgb(81, 191, 65);
   color: #fff;
   border: none;
-  padding: 5px 20px;
+  padding: 5px 35px;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration: none;
   font-size: 15px;
   font-family: inherit;
-  height: 50px;;
-  float: right;
+  height: 50px;
+  position: absolute;
+  margin-left: 350px;
 }
 
 .btn:focus {
@@ -56,13 +56,13 @@ body {
 
 .btn:active {
   transform: scale(0.98);
-}
+} 
 
 
 .task {
   background: #d6d2d2;
   margin: 15px 15px 15px 15px;
-  padding: 3px 20px;
+  padding: 15px 20px;
   cursor: pointer;
   border-radius: 10px;
 }
@@ -100,7 +100,7 @@ footer {
 
 .trashIcon{
   color: red;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 
@@ -111,4 +111,11 @@ footer {
 .micIcon{
   color:white;
   cursor: pointer;
+}
+
+.noTasks{
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  font-size: large;
 }

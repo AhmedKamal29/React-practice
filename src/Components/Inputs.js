@@ -11,10 +11,6 @@ import Button from "./Button";
 const Inputs = ({ onAdd }) => {
   const [text, setText] = useState("");
 
-  // const onClick = () => {
-  //   console.log("adding a task");
-  // };
-
   const onSubmit = (e) => {
     e.preventDefault();
     if (!text) {

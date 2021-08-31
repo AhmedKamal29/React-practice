@@ -18,7 +18,7 @@ const Inputs = ({ onAdd }) => {
       return;
     }
 
-    onAdd({ text });
+    onAdd(text);
 
     setText("");
   };

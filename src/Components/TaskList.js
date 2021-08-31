@@ -17,22 +17,35 @@ const TaskList = () => {
   });
 
   // add a task
-  const addTask = (task) => {
-    axios.post("http://localhost:5000/task").then((res) => {
-      setTasks([res.task]);
-    });
+  const addTask = (textInput) => {
+    axios
+      .post("http://localhost:5000/task", {
+        Task: textInput,
+      })
+      .then((response) => {
+        setTasks(response.data);
+      });
   };
 
   //delete task
-  const delTask = (id) => {
+  const delTask = () => {
     axios
-      .delete(`http://localhost:5000/task/ ${id}`)
+      .delete("http://localhost:5000/task/612de59832869c7507c5081e")
       .then((res) => {
-        setTasks(res.tasks.filter((task) => task.id !== id));
+        setTasks(res.filter((res) => res.id !== "612de59832869c7507c5081e"));
       })
       .catch((error) => {
-        console.error("There was an error!", error);
+        console.error("Something went wrong !", error);
       });
+
+    // axios
+    //   .delete(`http://localhost:5000/task/${id}`)
+    //   .then((res) => {
+    //     setTasks(res.filter((res) => res.id !== id));
+    //   })
+    //   .catch((error) => {
+    //     console.error("Something went wrong !", error);
+    //   });
   };
 
   return (

@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: rgb(29, 28, 28);
+  background-color: rgb(255, 251, 251);
 }
 
 .container {
@@ -16,7 +16,7 @@ body {
   margin: 120px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid rgba(255, 255, 255, 0.741);
+  border: 1px solid rgba(29, 26, 26, 0.741);
   padding: 20px;
   border-radius: 5px;
 }
@@ -29,7 +29,7 @@ body {
 
 .header h1{
   text-align: center;
-  color:white;
+  color:rgb(0, 0, 0);
 }
 
 .btn {
@@ -60,15 +60,11 @@ body {
 
 
 .task {
-  background: #d6d2d2;
-  margin: 15px 15px 15px 15px;
+  background: #cac7c7;
+  margin: 15px 15px 15px 30px;
   padding: 15px 20px;
   cursor: pointer;
   border-radius: 10px;
-}
-
-.task.reminder {
-  border-left: 5px solid green;
 }
 
 .task h4 {
@@ -77,20 +73,14 @@ body {
   justify-content: space-between;
 }
 
-
-footer {
-  margin-top: 30px;
-  text-align: center;
-}
-
 /* My edits */
 
 .TextArea input{
   padding: 20px 10px;
   width: 285px;
   height: 10px;
-  color:white; 
-  border-color: white !important;
+  color:black; 
+  /* border-color: white !important; */
 }
 
 .TextArea input::placeholder{
@@ -99,23 +89,28 @@ footer {
 
 
 .trashIcon{
-  color: red;
+  color: rgb(194, 33, 33);
   margin-top: 5px;
+  font-size: large;
 }
 
 
 .inputLabel{
-  color:white !important;
+  color:rgb(0, 0, 0) !important;
 }
 
 .micIcon{
-  color:white;
+  color:rgb(0, 0, 0);
   cursor: pointer;
 }
 
 .noTasks{
-  color: white;
+  color: black;
   text-align: center;
   margin-top: 10px;
   font-size: large;
+}
+
+.MuiCheckbox-colorSecondary.Mui-checked{
+  color: rgb(81, 191, 65) !important
 }

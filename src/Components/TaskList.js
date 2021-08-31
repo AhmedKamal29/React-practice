@@ -28,11 +28,11 @@ const TaskList = () => {
   };
 
   //delete task
-  const delTask = () => {
+  const delTask = (id) => {
     axios
-      .delete("http://localhost:5000/task/612de59832869c7507c5081e")
+      .delete(`http://localhost:5000/task/${id}`)
       .then((res) => {
-        setTasks(res.filter((res) => res.id !== "612de59832869c7507c5081e"));
+        setTasks(res.filter((res) => res.id !== id));
       })
       .catch((error) => {
         console.error("Something went wrong !", error);

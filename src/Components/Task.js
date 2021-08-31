@@ -21,18 +21,26 @@ const useStyles = makeStyles({
 
 const Task = ({ task, onDelete }) => {
   const classes = useStyles();
+
   const TaskDone = () => {
-    document.getElementById("task").className = "done";
+    if (document.getElementById("task").classList.contains("taskUndone")) {
+      document.getElementById("task").classList.remove("taskUndone");
+      document.getElementById("task").classList.add("taskDone");
+    } else if (document.getElementById("task").classList.contains("taskDone")) {
+      document.getElementById("task").classList.remove("taskDone");
+      document.getElementById("task").classList.add("taskUndone");
+    }
   };
+
   return (
     <div>
       <Checkbox
         classes={{
           root: classes.root,
         }}
-        onClick={() => TaskDone}
+        onClick={TaskDone}
       />
-      <div id="task" className="task">
+      <div id="task" className="taskUndone">
         <h4>
           {task.Task}
           <ImCancelCircle

@@ -1,9 +1,9 @@
-import TaskList from "./Components/TaskList";
+import TodoContainer from "./Components/TodoContainer";
 
 const App = () => {
   return (
     <div className="container">
-      <TaskList />
+      <TodoContainer />
     </div>
   );
 };

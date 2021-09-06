@@ -1,7 +1,7 @@
-import { ImCancelCircle } from "react-icons/im";
-import Checkbox from "@material-ui/core/Checkbox";
 import React from "react";
+import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
+import { ImCancelCircle } from "react-icons/im";
 
 const useStyles = makeStyles({
   root: {
@@ -10,18 +10,16 @@ const useStyles = makeStyles({
     position: "absolute",
     margin: "13px 0px",
     color: "#000000",
-    "&$checked": {
-      color: "rgb(81 191 65)",
-    },
     label: {
       textTransform: "capitalize",
     },
   },
 });
 
-const Task = ({ task, onDelete }) => {
-  const classes = useStyles();
+const TaskFormat = ({ task, onDelete, onSubmit }) => {
+  const classes = useStyles(); // defining a class for the style of checkbox material
 
+  // this is a function to swith the style of the task component when the chek mark is selected
   const TaskDone = () => {
     if (document.getElementById("task").classList.contains("taskUndone")) {
       document.getElementById("task").classList.remove("taskUndone");
@@ -38,14 +36,17 @@ const Task = ({ task, onDelete }) => {
         classes={{
           root: classes.root,
         }}
-        onClick={TaskDone}
+        onClick={() => {
+          TaskDone();
+          onSubmit(task._id);
+        }}
       />
-      <div id="task" className="taskUndone">
+      <div id="task" name="task" className="taskUndone">
         <h4>
           {task.Task}
           <ImCancelCircle
             className="trashIcon"
-            onClick={() => onDelete(task.id)}
+            onClick={() => onDelete(task._id)} // dont forget the id in the mongo db starts with _
           />
         </h4>
       </div>
@@ -53,4 +54,4 @@ const Task = ({ task, onDelete }) => {
   );
 };
 
-export default Task;
+export default TaskFormat;

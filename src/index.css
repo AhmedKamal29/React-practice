@@ -60,11 +60,12 @@ body {
 
 
 .taskUndone {
-  background:  rgba(82, 191, 65, 0.401);
+  background:  rgba(193, 196, 193, 0.6);
   margin: 15px 15px 15px 30px;
   padding: 15px 20px;
   cursor: pointer;
   border-radius: 10px;
+  
 }
 
 .taskUndone h4 {
@@ -74,11 +75,13 @@ body {
 }
 
 .taskDone {
-  background: rgb(82, 191, 65);
+  background:  rgba(213, 214, 213);
+  opacity: .6;
   margin: 15px 30px 15px 45px;
   padding: 15px 20px;
   cursor: pointer;
   border-radius: 10px;
+  text-decoration: line-through;
 }
 
 .taskDone h4 {

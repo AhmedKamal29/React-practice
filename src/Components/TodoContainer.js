@@ -37,15 +37,19 @@ const TaskList = () => {
       .catch((error) => {
         console.error("Something went wrong !", error);
       });
+  };
 
-    // axios
-    //   .delete(`http://localhost:5000/task/${id}`)
-    //   .then((res) => {
-    //     setTasks(res.filter((res) => res.id !== id));
-    //   })
-    //   .catch((error) => {
-    //     console.error("Something went wrong !", error);
-    //   });
+  const StatusUpdate = (id) => {
+    axios
+      .put(`http://localhost:5000/task/${id}`, {
+        Status: "This is an updated post.",
+      })
+      .then((response) => {
+        setTasks(response.data);
+      })
+      .catch((error) => {
+        console.error("Something went wrong !", error);
+      });
   };
 
   return (
@@ -53,8 +57,9 @@ const TaskList = () => {
       <Header />
       <Inputs onAdd={addTask} />
       {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={delTask} />
+        <Tasks tasks={tasks} onDelete={delTask} onSubmit={StatusUpdate} />
       ) : (
+        // <Tasks tasks={tasks} onDelete={delTask} />
         <p className="noTasks">
           You have no tasks today <span>&#9787;</span>{" "}
         </p>

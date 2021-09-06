@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-const TaskFormat = ({ task, onDelete, onSubmit }) => {
+const TaskFormat = ({ task, onDelete, changeStatus }) => {
   const classes = useStyles(); // defining a class for the style of checkbox material
 
   // this is a function to swith the style of the task component when the chek mark is selected
@@ -38,7 +38,7 @@ const TaskFormat = ({ task, onDelete, onSubmit }) => {
         }}
         onClick={() => {
           TaskDone();
-          onSubmit(task._id);
+          changeStatus(task._id);
         }}
       />
       <div id="task" name="task" className="taskUndone">

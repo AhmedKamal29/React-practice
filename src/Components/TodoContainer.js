@@ -39,13 +39,13 @@ const TaskList = () => {
       });
   };
 
-  const StatusUpdate = (id, newStatus) => {
+  const StatusUpdate = (id, newStatus, e) => {
     axios
       .put(`http://localhost:5000/task/${id}`, {
         Status: newStatus,
       })
       .then((response) => {
-        setTasks(response.data);
+        setTasks(response.data.Status);
       })
       .catch((error) => {
         console.error("Something went wrong !", error);

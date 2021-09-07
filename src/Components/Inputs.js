@@ -1,15 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { BsFillMicFill } from "react-icons/bs";
+import MicIcon from "@material-ui/icons/Mic";
 import Button from "./Button";
 
 const Inputs = ({ onAdd }) => {
   const [text, setText] = useState("");
+  const [Listening, setListening] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -17,11 +17,14 @@ const Inputs = ({ onAdd }) => {
       alert("Please add a task");
       return;
     }
-
     onAdd(text);
-
     setText("");
   };
+
+  // const handleToggle = () => {
+  //   console.log("clicked");
+  //   setListening(true);
+  // };
 
   return (
     <form className="TextArea" onSubmit={onSubmit}>
@@ -34,11 +37,17 @@ const Inputs = ({ onAdd }) => {
           label="what is your task"
           endAdornment={
             <InputAdornment position="end">
-              <BsFillMicFill
-                aria-label="toggle password visibility"
-                className="micIcon"
+              <MicIcon
+                onClick={() => {
+                  setListening((Listening) => !Listening);
+                }}
+                // className="micIcon Listen"
+                className={`${Listening ? "Listen micIcon" : "micIcon"}`}
                 edge="end"
               />
+              {/* <p className="Listening">
+                <strong>Listening ..</strong>
+              </p> */}
             </InputAdornment>
           }
         />

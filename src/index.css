@@ -94,10 +94,10 @@ body {
 
 .TextArea input{
   padding: 20px 10px;
-  width: 285px;
+  width: 275px;
   height: 10px;
   color:black; 
-  /* border-color: white !important; */
+
 }
 
 .TextArea input::placeholder{
@@ -130,4 +130,24 @@ body {
 
 .MuiCheckbox-colorSecondary.Mui-checked{
   color: rgb(81, 191, 65) !important
+}
+
+.Listen{
+	animation-name: pulse;
+	animation-duration: 1.2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+  border-radius: 20px;
+}
+
+@keyframes pulse{
+	0%{
+		box-shadow: 0px 0px 5px 0px rgba(173,0,0,.5);
+	}
+	65%{
+		box-shadow: 0px 0px 5px 5px rgba(173,0,0,.5);
+	}
+	90%{
+		box-shadow: 0px 0px 5px 12px rgba(173,0,0,0);
+	}
 }

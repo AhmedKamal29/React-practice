@@ -16,8 +16,12 @@ const useStyles = makeStyles({
   },
 });
 
+// const handelUpdate = (onUpdate) => {
+//   onUpdate.preventDefault();
+// };
+
 const TaskFormat = ({ task, onDelete, onSubmit }) => {
-  const classes = useStyles(); // defining a class for the style of checkbox material
+  const classes = useStyles();
   const [done, setDone] = useState(false);
 
   return (
@@ -29,6 +33,7 @@ const TaskFormat = ({ task, onDelete, onSubmit }) => {
         onClick={() => {
           setDone((done) => !done);
           onSubmit(task._id, task.Status);
+          // handelUpdate();
         }}
       />
       <div

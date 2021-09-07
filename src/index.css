@@ -138,6 +138,7 @@ body {
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 @keyframes pulse{

@@ -33,7 +33,6 @@ const TaskFormat = ({ task, onDelete, onSubmit }) => {
         onClick={() => {
           setDone((done) => !done);
           onSubmit(task._id, task.Status);
-          // handelUpdate();
         }}
       />
       <div

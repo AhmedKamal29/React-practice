@@ -21,11 +21,6 @@ const Inputs = ({ onAdd }) => {
     setText("");
   };
 
-  // const handleToggle = () => {
-  //   console.log("clicked");
-  //   setListening(true);
-  // };
-
   return (
     <form className="TextArea" onSubmit={onSubmit}>
       <FormControl variant="outlined">
@@ -41,13 +36,9 @@ const Inputs = ({ onAdd }) => {
                 onClick={() => {
                   setListening((Listening) => !Listening);
                 }}
-                // className="micIcon Listen"
                 className={`${Listening ? "Listen micIcon" : "micIcon"}`}
                 edge="end"
               />
-              {/* <p className="Listening">
-                <strong>Listening ..</strong>
-              </p> */}
             </InputAdornment>
           }
         />

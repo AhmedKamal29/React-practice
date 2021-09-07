@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
 import { ImCancelCircle } from "react-icons/im";
@@ -16,19 +16,9 @@ const useStyles = makeStyles({
   },
 });
 
-const TaskFormat = ({ task, onDelete, changeStatus }) => {
+const TaskFormat = ({ task, onDelete, onSubmit }) => {
   const classes = useStyles(); // defining a class for the style of checkbox material
-
-  // this is a function to swith the style of the task component when the chek mark is selected
-  const TaskDone = () => {
-    if (document.getElementById("task").classList.contains("taskUndone")) {
-      document.getElementById("task").classList.remove("taskUndone");
-      document.getElementById("task").classList.add("taskDone");
-    } else if (document.getElementById("task").classList.contains("taskDone")) {
-      document.getElementById("task").classList.remove("taskDone");
-      document.getElementById("task").classList.add("taskUndone");
-    }
-  };
+  const [done, setDone] = useState(false);
 
   return (
     <div>
@@ -37,11 +27,15 @@ const TaskFormat = ({ task, onDelete, changeStatus }) => {
           root: classes.root,
         }}
         onClick={() => {
-          TaskDone();
-          changeStatus(task._id);
+          setDone((done) => !done);
+          onSubmit(task._id, task.Status);
         }}
       />
-      <div id="task" name="task" className="taskUndone">
+      <div
+        id="task"
+        name="task"
+        className={`${done ? "taskDone" : "taskUndone"}`}
+      >
         <h4>
           {task.Task}
           <ImCancelCircle

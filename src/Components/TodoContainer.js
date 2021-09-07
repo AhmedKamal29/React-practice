@@ -39,10 +39,10 @@ const TaskList = () => {
       });
   };
 
-  const StatusUpdate = (id) => {
+  const StatusUpdate = (id, newStatus) => {
     axios
       .put(`http://localhost:5000/task/${id}`, {
-        Status: "This is an updated post.",
+        Status: newStatus,
       })
       .then((response) => {
         setTasks(response.data);

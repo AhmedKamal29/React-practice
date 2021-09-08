@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
 import { ImCancelCircle } from "react-icons/im";
+// import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -16,22 +17,27 @@ const useStyles = makeStyles({
   },
 });
 
-// const handelUpdate = (onUpdate) => {
-//   onUpdate.preventDefault();
-// };
-
-const TaskFormat = ({ task, onDelete, onSubmit }) => {
+const TaskFormat = ({ task, onDelete, onSubmit, onLoad }) => {
   const classes = useStyles();
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState(task.Status || false);
+
+  // const getTodos = () => {
+  //   axios.get("http://localhost:5000/task").then((res) => {
+  //     setTasks(res.data);
+  //   });
+  // };
 
   return (
     <div>
       <Checkbox
+        checked={done}
         classes={{
           root: classes.root,
         }}
-        onClick={() => {
-          setDone((done) => !done);
+        onClick={(e) => {
+          // async if the getTodos is uncommented
+          e.preventDefault();
+          // await getTodos();
           onSubmit(task._id, task.Status);
         }}
       />

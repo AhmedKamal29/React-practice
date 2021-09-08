@@ -1,6 +1,6 @@
 import TaskFormat from "./TaskFormat";
 
-const Tasks = ({ tasks, onDelete, onSubmit, onChange }) => {
+const Tasks = ({ tasks, onDelete, onSubmit, onLoad }) => {
   return (
     <div>
       {tasks.map((task) => (
@@ -10,6 +10,7 @@ const Tasks = ({ tasks, onDelete, onSubmit, onChange }) => {
           Status={task.Status}
           onDelete={onDelete}
           onSubmit={onSubmit}
+          onLoad={onLoad}
         />
       ))}
     </div>

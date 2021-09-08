@@ -16,6 +16,13 @@ const TaskList = () => {
     });
   });
 
+  // getting all the todo
+  const getTodos = () => {
+    axios.get("http://localhost:5000/task").then((res) => {
+      setTasks(res.data);
+    });
+  };
+
   // add a task
   const addTask = (textInput) => {
     axios
@@ -57,7 +64,12 @@ const TaskList = () => {
       <Header />
       <Inputs onAdd={addTask} />
       {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={delTask} onSubmit={StatusUpdate} />
+        <Tasks
+          tasks={tasks}
+          onDelete={delTask}
+          onSubmit={StatusUpdate}
+          onLoad={getTodos}
+        />
       ) : (
         // <Tasks tasks={tasks} onDelete={delTask} />
         <p className="noTasks">

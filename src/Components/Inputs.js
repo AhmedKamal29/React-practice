@@ -6,6 +6,12 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MicIcon from "@material-ui/icons/Mic";
 import Button from "./Button";
+import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
+import MenuItem from "@material-ui/core/MenuItem";
+import { BiSortDown } from "react-icons/bi";
+import { RiArrowUpSLine } from "react-icons/ri";
+import { CgMathEqual } from "react-icons/cg";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -13,10 +19,18 @@ const mic = new SpeechRecognition();
 
 mic.continuous = true;
 mic.interimResults = true;
-mic.lang = "en-US";
+mic.lang = ["en-US", "ar-EG"];
 
-const Inputs = ({ onAdd }) => {
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+}));
+
+const Inputs = ({ onAdd, Sorting }) => {
   const [text, setText] = useState("");
+  const [priority, setpriority] = useState(2);
   const [Listening, setListening] = useState(false);
 
   const handleListen = () => {
@@ -54,39 +68,105 @@ const Inputs = ({ onAdd }) => {
   }, [Listening]);
 
   const onSubmit = (e) => {
+    console.log(text, priority);
     e.preventDefault();
-    if (!text) {
-      alert("Please add a task");
+    if (!text && !priority) {
+      alert("Please add a task and set priority");
       return;
     }
-    onAdd(text);
+    onAdd(text, priority);
     setText("");
+    setpriority("");
   };
 
+  const classes = useStyles();
+
   return (
-    <form className="TextArea" onSubmit={onSubmit}>
-      <FormControl variant="outlined">
-        <InputLabel className="inputLabel">What is your task</InputLabel>
-        <OutlinedInput
-          required
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          label="what is your task"
-          endAdornment={
-            <InputAdornment position="end">
-              <MicIcon
-                onClick={() => {
-                  setListening((Listening) => !Listening);
-                }}
-                className={`${Listening ? "Listen micIcon" : "micIcon"}`}
-                edge="end"
-              />
-            </InputAdornment>
-          }
-        />
-        <Button type="submit" text="Add Task" />
-      </FormControl>
-    </form>
+    <div>
+      <form className="TextArea" onSubmit={onSubmit}>
+        <FormControl variant="outlined">
+          <InputLabel className="inputLabel">What is your task</InputLabel>
+          <OutlinedInput
+            required
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            label="what is your task"
+            endAdornment={
+              <InputAdornment position="end">
+                <MicIcon
+                  onClick={() => {
+                    setListening((Listening) => !Listening);
+                  }}
+                  className={`${Listening ? "Listen micIcon" : "micIcon"}`}
+                  edge="end"
+                />
+              </InputAdornment>
+            }
+          />
+          <Button type="submit" text="Add Task" />
+        </FormControl>
+
+        <FormControl
+          id="demo-simple-select-outlined-label"
+          className={classes.formControl}
+        >
+          <InputLabel htmlFor="grouped-select">Priority</InputLabel>
+          <Select
+            className="priorityField"
+            value={priority}
+            id="demo-simple-select-outlined-label"
+            onChange={(e) => {
+              setpriority(e.target.value);
+            }}
+          >
+            <MenuItem value={1}>
+              <RiArrowUpSLine className="highArrow" />
+              High
+            </MenuItem>
+            <MenuItem value={2}>
+              <CgMathEqual className="moderatePriority" />
+              Mid
+            </MenuItem>
+            <MenuItem value={3}>
+              <RiArrowUpSLine className="lowArrow" />
+              Low
+            </MenuItem>
+          </Select>
+        </FormControl>
+
+        <div class="dropdown">
+          <button disabled class="dropbtn">
+            <BiSortDown className="SortIcon" />
+          </button>
+          <div class="dropdown-content">
+            <MenuItem
+              value="none"
+              onClick={() => {
+                Sorting("?sortBy=none");
+              }}
+            >
+              None
+            </MenuItem>
+            <MenuItem
+              value="createdAt"
+              onClick={() => {
+                Sorting("?sortBy=date");
+              }}
+            >
+              CreatedAt
+            </MenuItem>
+            <MenuItem
+              value="Priority"
+              onClick={() => {
+                Sorting("?sortBy=Priority");
+              }}
+            >
+              Priority
+            </MenuItem>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -6,15 +6,13 @@ import Tasks from "./Tasks";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const TaskList = () => {
+const TodoContainer = () => {
   const [tasks, setTasks] = useState([]); // defining the tasks
 
   // useEffect for rendering the data on page load
   useEffect(() => {
-    axios.get("http://localhost:5000/task").then((res) => {
-      setTasks(res.data);
-    });
-  });
+    getTodos();
+  }, []);
 
   // getting all the todo
   const getTodos = () => {
@@ -24,13 +22,19 @@ const TaskList = () => {
   };
 
   // add a task
-  const addTask = (textInput) => {
+  const addTask = (textInput, prioritylvl) => {
     axios
       .post("http://localhost:5000/task", {
         Task: textInput,
+        Priority: prioritylvl,
       })
       .then((response) => {
-        setTasks(response.data);
+        setTasks((oldTasks) => [...oldTasks, response.data]);
+      })
+      .catch((error) => {
+        console.error(
+          "something went wrong while adding a task to the database"
+        );
       });
   };
 
@@ -39,30 +43,43 @@ const TaskList = () => {
     axios
       .delete(`http://localhost:5000/task/${id}`)
       .then((res) => {
-        setTasks(res.filter((res) => res.id !== id));
+        getTodos();
       })
       .catch((error) => {
         console.error("Something went wrong !", error);
       });
   };
 
-  const StatusUpdate = (id, newStatus, e) => {
+  // Update the status of the task
+  const StatusUpdate = (id, newStatus) => {
     axios
       .put(`http://localhost:5000/task/${id}`, {
         Status: newStatus,
       })
-      .then((response) => {
-        setTasks(response.data.Status);
+      .then(async (response) => {
+        await getTodos();
       })
       .catch((error) => {
         console.error("Something went wrong !", error);
+      });
+  };
+
+  //sort the data based on the priority
+  const SortBy = (sort) => {
+    axios
+      .get(`http://localhost:5000/task${sort}`)
+      .then(async (res) => {
+        await setTasks(res.data);
+      })
+      .catch((error) => {
+        console.error("Something went wrong while sorting the tasks");
       });
   };
 
   return (
     <div>
       <Header />
-      <Inputs onAdd={addTask} />
+      <Inputs onAdd={addTask} Sorting={SortBy} />
       {tasks.length > 0 ? (
         <Tasks
           tasks={tasks}
@@ -71,7 +88,6 @@ const TaskList = () => {
           onLoad={getTodos}
         />
       ) : (
-        // <Tasks tasks={tasks} onDelete={delTask} />
         <p className="noTasks">
           You have no tasks today <span>&#9787;</span>{" "}
         </p>
@@ -80,4 +96,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default TodoContainer;

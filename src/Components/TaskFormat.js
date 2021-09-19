@@ -19,18 +19,12 @@ const useStyles = makeStyles({
 
 const TaskFormat = ({ task, onDelete, onSubmit, onLoad }) => {
   const classes = useStyles();
-  const [done, setDone] = useState(task.Status || false);
-
-  // const getTodos = () => {
-  //   axios.get("http://localhost:5000/task").then((res) => {
-  //     setTasks(res.data);
-  //   });
-  // };
+  const [priority, setpriority] = useState(task.Priority || 2);
 
   return (
     <div>
       <Checkbox
-        checked={done}
+        checked={task.Status}
         classes={{
           root: classes.root,
         }}
@@ -44,12 +38,20 @@ const TaskFormat = ({ task, onDelete, onSubmit, onLoad }) => {
       <div
         id="task"
         name="task"
-        className={`${done ? "taskDone" : "taskUndone"}`}
+        className={`${
+          task.Status
+            ? "taskDone"
+            : priority === 3
+            ? "taskUndone lowlvl"
+            : priority === 1
+            ? "taskUndone highlvl"
+            : "taskUndone midlvl"
+        }`}
       >
         <h4>
           {task.Task}
           <ImCancelCircle
-            className="trashIcon"
+            className="DelIcon"
             onClick={() => onDelete(task._id)} // dont forget the id in the mongo db starts with _
           />
         </h4>

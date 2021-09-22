@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
+import FilledInput from "@material-ui/core/FilledInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MicIcon from "@material-ui/icons/Mic";
 import Button from "./Button";
@@ -84,13 +84,17 @@ const Inputs = ({ onAdd, Sorting }) => {
   return (
     <div>
       <form className="TextArea" onSubmit={onSubmit}>
-        <FormControl variant="outlined">
-          <InputLabel className="inputLabel">What is your task</InputLabel>
-          <OutlinedInput
-            required
+        <FormControl sx={{ m: 1, width: "25ch" }} variant="filled">
+          <InputLabel
+            className="inputLabel"
+            htmlFor="filled-adornment-password"
+          >
+            What is your task
+          </InputLabel>
+          <FilledInput
+            id="filled-adornment-password"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            label="what is your task"
             endAdornment={
               <InputAdornment position="end">
                 <MicIcon
@@ -135,10 +139,10 @@ const Inputs = ({ onAdd, Sorting }) => {
         </FormControl>
 
         <div class="dropdown">
-          <button disabled class="dropbtn">
+          <button disabled className="dropbtn">
             <BiSortDown className="SortIcon" />
           </button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <MenuItem
               value="none"
               onClick={() => {

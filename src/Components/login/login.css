@@ -1,0 +1,56 @@
+
+.loginContainer{
+    font-family: sans-serif;
+    background-color: rgb(241, 240, 240);
+    max-width: 1000px;
+    min-height: 620px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    border-radius: 10px;
+    margin: 30px auto auto auto;
+}
+.leftSection{
+    background-color: #3f9efe;
+    padding: 250px 50px 250px 25px;
+    border-radius: 10px;
+    color: white;
+}
+
+
+.logo{
+    color: #3965a7;
+    background-color: rgb(241, 240, 240);
+    border-radius: 85px;
+    margin-top: 280px;
+    margin-left: -40px;
+}
+
+.rightSection{
+    padding: 200px;
+}
+
+.rightSection h3{
+margin-left: 200px;
+}
+
+.logintitle{
+    margin-bottom: 20px;
+}
+
+.FormInput{
+    width: 450px !important;
+    margin-bottom: 10px !important;
+}
+
+.loginForm{
+    margin-left: 20px !important
+}
+
+.rememberme{
+    margin-left: 120px !important
+}
+
+.formbtns{
+    width: 150px;
+    margin-top: 20px;
+    margin-left: 50px;
+}

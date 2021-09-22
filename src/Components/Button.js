@@ -8,7 +8,7 @@ const Button = ({ type, text, onClick }) => {
       type={type}
       onClick={onClick}
       value="Saving btn "
-      className="btn"
+      className="Addbtn"
     >
       {text}
     </button>

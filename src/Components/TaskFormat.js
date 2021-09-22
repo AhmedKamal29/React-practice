@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
 import { ImCancelCircle } from "react-icons/im";
-// import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -34,6 +33,7 @@ const TaskFormat = ({ task, onDelete, onSubmit, onLoad }) => {
           // await getTodos();
           onSubmit(task._id, task.Status);
         }}
+        color="success"
       />
       <div
         id="task"
@@ -48,13 +48,11 @@ const TaskFormat = ({ task, onDelete, onSubmit, onLoad }) => {
             : "taskUndone midlvl"
         }`}
       >
-        <h4>
-          {task.Task}
-          <ImCancelCircle
-            className="DelIcon"
-            onClick={() => onDelete(task._id)} // dont forget the id in the mongo db starts with _
-          />
-        </h4>
+        <h3>{task.Task}</h3>
+        <ImCancelCircle
+          className="DelIcon"
+          onClick={() => onDelete(task._id)} // dont forget the id in the mongo db starts with _
+        />
       </div>
     </div>
   );

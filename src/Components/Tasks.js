@@ -5,7 +5,7 @@ const Tasks = ({ tasks, onDelete, onSubmit }) => {
     <div>
       {tasks.map((task) => (
         <TaskFormat
-          key={task.id}
+          key={task._id}
           task={task}
           Status={task.Status}
           Priority={task.Priority}
